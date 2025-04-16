@@ -13,12 +13,7 @@ export async function GET() {
 export async function POST(req: Request) {
     try {
       await connectDB();
-      const data = await req.json() as {
-        description: string;
-        amount: number;
-        date: string;
-      };
-      
+      const data = await req.json();
       const newTransaction = await Transaction.create(data);
       return NextResponse.json(newTransaction);
     } catch (error: any) {
